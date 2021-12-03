@@ -47,6 +47,14 @@ $faqs = [
         max-width: 1140px;
         margin: 2rem auto;
     }
+    .logo {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+    }
+    .logo img {
+        margin-right: 1rem
+    }
     .faq {
         padding-top: 1.5rem;
     }
@@ -56,7 +64,6 @@ $faqs = [
     ul {
         list-style: none;
         display: flex;
-         padding-top: 1.5rem;
     }
     ul > li {
         padding: 0 1rem;
@@ -69,9 +76,17 @@ $faqs = [
     h2 {
          padding-bottom: 1.5rem;
     }
+    p {
+        padding: 0.5rem 0;
+    }
 </style>
 <body>
-    <div class="menu">
+    <header>
+        <div class="logo">
+            <img width="65" src="./assets/logo.jpg" alt="">
+            <h3>Privacy & Termini</h3>
+        </div>
+        <div class="menu">
         <ul>
             <li>Introduzione</li>
             <li>Norme sulla privacy</li>
@@ -80,17 +95,25 @@ $faqs = [
             <li class="active">Domande frequenti</li>
         </ul>
     </div>
+    </header>
+    
 <div class="container">
     <?php
     foreach ($faqs as $key => $faq) {
     $question = $faq['domanda'];
     $answer =  $faq['risposta'];
+    //$subanswer = wordwrap($answer,440,"<br>\n");
+    $values = explode("\r\n", $answer);
 
 ?>
     <section class="faq">
         <h2><?php echo $question; ?></h2>
-        <p> <?php echo $answer; ?></p>
-
+        <?php
+        foreach($values as $value) {?>
+        <p> <?php echo $value."<p>"; ?> </p>
+        <?php
+        }
+        ?>
     </section>
 
 <?php
